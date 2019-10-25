@@ -1,0 +1,21 @@
+* {
+   font-family: sans-serif;
+}
+
+h1 {
+   text-align: center;
+}
+
+.jumbotron h1{
+   color:dodgerblue;
+   font-size: 30pt;
+   font-weight: bold;
+}
+
+#add{
+   float: right;
+}
+
+table{
+   text-align: center;
+}
