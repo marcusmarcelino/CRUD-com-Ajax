@@ -8,9 +8,5 @@ $conn = mysqli_connect ($hostname,$user,$password,$database);
 
 if(!$conn){
    echo die("Falha na conexão".mysqli_connect_error());
-<<<<<<< HEAD
-}//else {echo "Parabéns!! A conexão ao banco de dados ocorreu normalmente!";}
-=======
 }
->>>>>>> functions-aux
 ?>
