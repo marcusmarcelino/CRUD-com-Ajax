@@ -12,13 +12,7 @@ function getList (){
       url: 'controller.php?op=getList',
       method: 'GET',
       dataType: 'text',
-<<<<<<< HEAD
-      success: function (response) {
-         alert('A requisição foi realizada com Sucesso!');
-      }
-=======
       success: function (response) {}
->>>>>>> functions-aux
    }).done(function (response) {  
       $('#tbody').html(response);
    }).fail(function (error) {
