@@ -53,3 +53,21 @@ function isNotEmpty(element){
     }
    return true;
 }
+
+function delet(id){
+   $.ajax({
+      url: 'controller.php?op=delet',
+      method: 'POST',
+      dataType: 'text',
+      data: {
+         id : id
+      },
+      success: function (response) {
+         window.location.reload();
+      }
+   }).done(function (response) {
+      alert(response);
+   }).fail(function (error) {
+      console.log(error);
+   });
+}
