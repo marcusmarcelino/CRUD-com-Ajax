@@ -4,6 +4,9 @@ switch ($op){
    case 'getList':
       getList();
       break;
+   case 'save':
+      save();
+      break;
    default:
       echo "Entrou na opção default";
       break;
@@ -12,7 +15,6 @@ switch ($op){
 function getList(){
    include_once("conexao.php");
    if(isset($_GET)){
-      echo( "Entrou no getList");
       $sql = "SELECT * FROM country";
       $result = mysqli_query($conn,$sql);
       $response='';
@@ -31,6 +33,28 @@ function getList(){
             }exit($response);
       }else{
          exit('Sua Base de dados está vazia!');
+      }
+   }
+   mysqli_close($conn);
+}
+
+function save(){
+   include_once("conexao.php");
+   
+   if(isset($_POST)){
+      $countryName =$_POST['countryName'];
+      $shortDesc= $_POST['shortDesc'];
+      $longDesc = $_POST['longDesc'];
+
+      $sql = "SELECT * FROM country WHERE countryName = '$countryName' ";
+      $result = mysqli_query($conn,$sql);
+
+      if($result->num_rows > 0){
+         exit('O país já existe!');
+      }else{
+         mysqli_query($conn,"INSERT INTO country (countryName, shortDesc, longDesc)
+            VALUES ('$countryName','$shortDesc','$longDesc')") or die($mysqli->error);
+         exit('O país foi inserido!');
       }
    }
    mysqli_close($conn);

@@ -8,17 +8,54 @@ $(document).ready(function(){
 });
 
 function getList (){
-   alert('Entrou no get Listar dados cadastrados!');
    $.ajax({
       url: 'controller.php?op=getList',
       method: 'GET',
       dataType: 'text',
+<<<<<<< HEAD
       success: function (response) {
          alert('A requisição foi realizada com Sucesso!');
       }
+=======
+      success: function (response) {}
+>>>>>>> functions-aux
    }).done(function (response) {  
       $('#tbody').html(response);
    }).fail(function (error) {
       console.log(error);
    });
+}
+
+function save(){
+   if(isNotEmpty($("#countryName")) && isNotEmpty($("#shortDesc")) && isNotEmpty($("#longDesc"))){
+      $.ajax({
+         url: 'controller.php?op=save',
+         method: 'POST',
+         dataType: 'text',
+         data: {
+            countryName : $("#countryName").val(),
+            shortDesc :  $("#shortDesc").val(),
+            longDesc : $("#longDesc").val()
+         },
+         success: function (response) {
+            $("#modalForm").modal('hide');
+            window.location.reload();
+         }
+      }).done(function (response) {
+         alert(response);
+      }).fail(function (error) {
+         console.log(error);
+      });
+   }
+}
+
+function isNotEmpty(element){
+   if(element.val() == ''){
+       alert('Porfavor preencha o campo que está vazio!')
+       element.css('border', '1px solid red');
+       return false
+    }else{
+       element.css('border', '');
+    }
+   return true;
 }
