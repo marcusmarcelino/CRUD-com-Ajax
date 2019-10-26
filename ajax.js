@@ -3,7 +3,6 @@ $(document).ready(function(){
       $("#countryName").val('');
       $("#shortDesc").val('');
       $("#longDesc").val('');
-      //alert('Entrou!');
    });
    getList();
 });
@@ -16,7 +15,6 @@ function getList (){
       dataType: 'text',
       success: function (response) {
          alert('A requisição foi realizada com Sucesso!');
-         //alert(response);
       }
    }).done(function (response) {  
       $('#tbody').html(response);
