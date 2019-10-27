@@ -56,7 +56,7 @@ function save(){
       $result = mysqli_query($conn,$sql);
 
       if($result->num_rows > 0){
-         exit('O país já existe!');
+         exit('existe');
       }else{
          mysqli_query($conn,"INSERT INTO country (countryName, shortDesc, longDesc)
             VALUES ('$countryName','$shortDesc','$longDesc')") or die($mysqli->error);
@@ -69,15 +69,28 @@ function save(){
 
 
 function edit(){
-
+   include_once("conexao.php");
+   if(isset($_GET)){
+      $id =$_GET['id'];
+      $result = mysqli_query($conn,"SELECT countryName, shortDesc, longDesc FROM country WHERE id='$id'")or die($mysqli->error);
+      $data = $result->fetch_array();
+         $jsonArray = array(
+            'countryName' => $data['countryName'],
+            'shortDesc' => $data['shortDesc'],
+            'longDesc' => $data['longDesc'],
+         );
+         exit(json_encode($jsonArray));
+   }
+   mysqli_close($conn);
 }
 
 function delet(){
    include_once("conexao.php");
    if(isset($_POST)){
       $id =$_POST['id'];
-      mysqli_query($conn,"DELETE FROM country WHERE id='$id'");
+      mysqli_query($conn,"DELETE FROM country WHERE id='$id'")or die($mysqli->error);
       exit('O registro '.$id.' foi deletado!');
    }
+   mysqli_close($conn);
 }
 ?>
