@@ -72,6 +72,6 @@ function delet(id){
          console.log(error);
       });
    }else{
-      alert('Cancelar exclusão?')
+      alert('Exclusão cancelado!!')
    }
 }
