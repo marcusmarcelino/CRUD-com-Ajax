@@ -3,6 +3,7 @@ $(document).ready(function(){
       $("#countryName").val('');
       $("#shortDesc").val('');
       $("#longDesc").val('');
+      $("#editRowID").val('');
    });
    getList();
 });
@@ -29,18 +30,21 @@ function save(){
          data: {
             countryName : $("#countryName").val(),
             shortDesc :  $("#shortDesc").val(),
-            longDesc : $("#longDesc").val()
+            longDesc : $("#longDesc").val(),
+            editRowID : $("#editRowID").val()
          },
          success: function (response) {
             $("#modalForm").modal('hide');
          }
       }).done(function (response) {
-         if(response == "existe"){
+         if(response == "update"){
+            alert("O registro foi atualizado!!!");
+         }else if(response == "existe"){
             alert ("O país já existe!");
          }else{
             alert(response);
-            window.location.reload();
          }
+         window.location.reload();
       }).fail(function (error) {
          console.log(error);
       });
@@ -92,6 +96,7 @@ function edit(id){
          $("#modalForm").modal('show');
       }
    }).done(function (response) {
+      $("#editRowID").val(id);
       $("#countryName").val(response.countryName);
       $("#shortDesc").val(response.shortDesc);
       $("#longDesc").val(response.longDesc);
