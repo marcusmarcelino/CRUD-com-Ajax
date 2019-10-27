@@ -60,7 +60,7 @@ function delet(id){
       method: 'POST',
       dataType: 'text',
       data: {
-         id : id
+         id : id.val()
       },
       success: function (response) {
          window.location.reload();
