@@ -51,9 +51,14 @@ function save(){
       $countryName =$_POST['countryName'];
       $shortDesc= $_POST['shortDesc'];
       $longDesc = $_POST['longDesc'];
+      $editRowID = $_POST['editRowID'];
 
-      $sql = "SELECT * FROM country WHERE countryName = '$countryName' ";
-      $result = mysqli_query($conn,$sql);
+      $result = mysqli_query($conn,"SELECT * FROM country WHERE countryName = '$countryName' ");
+
+      if($editRowID != ''){
+         mysqli_query($conn,"UPDATE country SET countryName='$countryName', shortDesc='$shortDesc', longDesc='$longDesc' WHERE id='$editRowID'");
+         exit('update');
+      }
 
       if($result->num_rows > 0){
          exit('existe');
@@ -66,8 +71,6 @@ function save(){
    mysqli_close($conn);
 }
 
-
-
 function edit(){
    include_once("conexao.php");
    if(isset($_GET)){
@@ -79,7 +82,7 @@ function edit(){
             'shortDesc' => $data['shortDesc'],
             'longDesc' => $data['longDesc'],
          );
-         exit(json_encode($jsonArray));
+      exit(json_encode($jsonArray));
    }
    mysqli_close($conn);
 }
