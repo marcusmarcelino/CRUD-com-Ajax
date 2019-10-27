@@ -7,6 +7,12 @@ switch ($op){
    case 'save':
       save();
       break;
+   case 'edit':
+      edit();
+      break;
+   case 'delet':
+      delet();
+      break;
    default:
       echo "Entrou na opção default";
       break;
@@ -25,8 +31,8 @@ function getList(){
                      <td>'.$data['id'].'</td>
                      <td id="country_'.$data['id'].'">'.$data['countryName'].'</td>
                      <td>
-                        <button value="Edit" onclick="edit('.$data['id'].')" class="btn btn-primary">edit</button>
-                        <button value="Delete" onclick="deleteRow('.$data['id'].')" class="btn btn-danger">delete</button>
+                        <button value="Edit" onclick="edit('.$data['id'].')" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                        <button value="Delet" onclick="delet('.$data['id'].')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                      </td>
                   </tr>
                ';
@@ -58,5 +64,15 @@ function save(){
       }
    }
    mysqli_close($conn);
+}
+
+
+
+function edit(){
+
+}
+
+function delet(){
+
 }
 ?>
