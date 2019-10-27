@@ -74,7 +74,6 @@ function edit(){
 
 function delet(){
    include_once("conexao.php");
-   
    if(isset($_POST)){
       $id =$_POST['id'];
       mysqli_query($conn,"DELETE FROM country WHERE id='$id'");
