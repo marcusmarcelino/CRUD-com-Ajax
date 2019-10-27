@@ -33,10 +33,14 @@ function save(){
          },
          success: function (response) {
             $("#modalForm").modal('hide');
-            window.location.reload();
          }
       }).done(function (response) {
-         alert(response);
+         if(response == "existe"){
+            alert ("O país já existe!");
+         }else{
+            alert(response);
+            window.location.reload();
+         }
       }).fail(function (error) {
          console.log(error);
       });
@@ -74,4 +78,24 @@ function delet(id){
    }else{
       alert('Exclusão cancelado!!')
    }
+}
+
+function edit(id){
+   $.ajax({
+      url: 'controller.php?op=edit',
+      method: 'GET',
+      dataType: 'json',
+      data: {
+         id : id
+      },
+      success: function (response) {
+         $("#modalForm").modal('show');
+      }
+   }).done(function (response) {
+      $("#countryName").val(response.countryName);
+      $("#shortDesc").val(response.shortDesc);
+      $("#longDesc").val(response.longDesc);
+   }).fail(function (error) {
+      console.log(error);
+   });
 }
