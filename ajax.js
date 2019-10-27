@@ -55,19 +55,23 @@ function isNotEmpty(element){
 }
 
 function delet(id){
-   $.ajax({
-      url: 'controller.php?op=delet',
-      method: 'POST',
-      dataType: 'text',
-      data: {
-         id : id.val()
-      },
-      success: function (response) {
-         window.location.reload();
-      }
-   }).done(function (response) {
-      alert(response);
-   }).fail(function (error) {
-      console.log(error);
-   });
+   if(confirm('Você tem certeza??')){
+      $.ajax({
+         url: 'controller.php?op=delet',
+         method: 'POST',
+         dataType: 'text',
+         data: {
+            id : id
+         },
+         success: function (response) {
+            window.location.reload();
+         }
+      }).done(function (response) {
+         alert(response);
+      }).fail(function (error) {
+         console.log(error);
+      });
+   }else{
+      alert('Cancelar exclusão?')
+   }
 }
