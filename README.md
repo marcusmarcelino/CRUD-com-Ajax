@@ -49,6 +49,6 @@ Com 4 colunas:
 ## Imagens da Aplicação:
 
 <p align="center">
-  <img src="img/telaPrincipal.png" width="350" title="Tela Inicial">
+  <img src="img/TelaPrincipal.png" width="350" title="Tela Inicial">
   <img src="img/TelaCadastroModal.png" width="350" alt="Tela de Cadastro Modal">
 </p>
